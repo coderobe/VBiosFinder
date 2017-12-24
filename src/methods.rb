@@ -25,7 +25,7 @@ module VBiosFinder
         puts "not packed with UPX".colorize(:red)
       end
 
-      if Utils.installed?("7z", "required for 7z (self-extracting) archives") && Test::p7zip(file)
+      if Utils::installed?("7z", "required for 7z (self-extracting) archives") && Test::p7zip(file)
         puts "found 7z archive".colorize(:green)
         Extract::p7zip(file)
       else
