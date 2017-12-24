@@ -17,6 +17,10 @@ module VBiosFinder
         return
       end
       FileUtils.mkdir_p wd
+      Kernel.at_exit do
+        puts "Cleaning up garbage".colorize(:blue)
+        FileUtils.remove_entry_secure wd
+      end
       @@wd = wd
       Dir.chdir wd
       puts "output will be stored in '#{wd}'".colorize(":blue")
