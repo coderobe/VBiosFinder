@@ -45,18 +45,24 @@ module VBiosFinder
           puts "#{modules.length} possible candidates".colorize(:green)
           outpath = "#{Dir.pwd}/../output"
           FileUtils.mkdir_p outpath
-          modules.each do |mod|
-            rom_parser = Cocaine::CommandLine.new("rom-parser", ":file")
-            begin
-              romdata = rom_parser.run(file: mod)
-              romdata = romdata.split("\n")[1].split(", ").map{|e| e.split(": ")}.to_h rescue nil
-              unless romdata.nil? && romdata['vendor'].nil? && romdata['device'].nil?
-                puts "Found VBIOS for device #{romdata['vendor']}:#{romdata['device']}!".colorize(:green)
-                new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}.rom"
-                FileUtils.cp(file, "#{outpath}/#{new_filename}")
+          if Utils::installed?("rom-parser", "required for proper rom naming & higher accuracy")
+            modules.each do |mod|
+              rom_parser = Cocaine::CommandLine.new("rom-parser", ":file")
+              begin
+                romdata = rom_parser.run(file: mod)
+                romdata = romdata.split("\n")[1].split(", ").map{|e| e.split(": ")}.to_h rescue nil
+                unless romdata.nil? && romdata['vendor'].nil? && romdata['device'].nil?
+                  puts "Found VBIOS for device #{romdata['vendor']}:#{romdata['device']}!".colorize(:green)
+                  new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}.rom"
+                  FileUtils.cp(mod, "#{outpath}/#{new_filename}")
+                end
+              rescue Cocaine::ExitStatusError => e
+                puts "can't determine vbios type"
               end
-            rescue Cocaine::ExitStatusError => e
-              puts "can't determine vbios type"
+            end
+          else
+            modules.each do |mod|
+              FileUtils.cp(mod, outpath)
             end
           end
           puts "Job done. Extracted files can be found in #{outpath}".colorize(:green)
