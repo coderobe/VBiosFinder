@@ -9,7 +9,7 @@ module VBiosFinder
         puts "found #{requires} archive".colorize(:green)
         Extract.method(method_s).call(file)
       else
-        puts "not packed with #{requires}".colorize(:red)
+        puts "not extractable with #{requires}".colorize(:red)
       end
     end
   end
