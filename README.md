@@ -31,7 +31,7 @@ Some dependencies might not offer a package for your linux distribution **(like 
 
 ## TODO
 - Add option to extract the bios of the running system **(can we?)**
-- Clean up temporary working dir after finishing up **(should we?) (default-on CLI switch?)**
+- ~~Clean up temporary working dir after finishing up~~ done
 - Test with more BIOS updates
 
 ## Licensing
