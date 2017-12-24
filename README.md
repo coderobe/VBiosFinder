@@ -20,3 +20,7 @@ Some dependencies might not offer a package for your linux distribution ^(like U
 - Run `./vbiosfinder extract /path/to/bios_update.exe` to attempt an extraction
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
+
+## Licensing
+This project, initially authored by Robin Broda, is licensed under the GNU Affero General Public License v3  
+A copy of the license is available in `LICENSE.txt`
