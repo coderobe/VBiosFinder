@@ -13,10 +13,10 @@ Laptops with NVIDIA Optimus graphics often have the dGPU VBIOS integrated in the
 - upx **(optional)**
 
 ## Note
-Some dependencies might not offer a package for your linux distribution ^(like UEFIDump and rom-parser). The binaries can be placed in `./3rdparty` to avoid having to install them.
+Some dependencies might not offer a package for your linux distribution **(like UEFIDump and rom-parser)**. The binaries can be placed in `./3rdparty` to avoid having to install them.
 
 ## Usage
-- Run `bundle install --path=vendor/bundle` to install the required ruby modules ^(once)
+- Run `bundle install --path=vendor/bundle` to install the required ruby modules **(once)**
 - Run `./vbiosfinder extract /path/to/bios_update.exe` to attempt an extraction
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
