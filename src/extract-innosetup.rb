@@ -3,6 +3,7 @@ require "cocaine"
 module VBiosFinder
   class Extract
     def self.innosetup file
+      puts file
       begin
         line = Cocaine::CommandLine.new("innoextract", ":file")
         puts line.run(file: file)

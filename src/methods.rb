@@ -1,6 +1,7 @@
 require "cocaine"
 require "find"
 require "colorize"
+require "./src/extraction"
 require "./src/extract-innosetup"
 require "./src/extract-upx"
 require "./src/extract-uefi"
@@ -11,27 +12,14 @@ module VBiosFinder
     def self.run file
       puts "trying to extract #{file}"
 
-      if Utils::installed?("innoextract", "required for Inno Installers") && Test::innosetup(file)
-        puts "found InnoSetup, attempting extraction...".colorize(:green)
-        Extract::innosetup(file)
-      else
-        puts "not an InnoSetup archive".colorize(:red)
-      end
+      # Attempt all known extraction methods
+      extractions = []
+      extractions << [:innosetup, "innoextract", "required for Inno Installers", file]
+      extractions << [:upx, "upx", "required for UPX executables", file]
+      extractions << [:p7zip, "7z", "required for 7z (self-extracting) archives", file]
+      extractions.each{|e| Extraction::attempt(*e)}
 
-      if Utils::installed?("upx", "required for UPX executables") && Test::upx(file)
-        puts "found file packed with UPX, attempting extraction...".colorize(:green)
-        Extract::upx(file)
-      else
-        puts "not packed with UPX".colorize(:red)
-      end
-
-      if Utils::installed?("7z", "required for 7z (self-extracting) archives") && Test::p7zip(file)
-        puts "found 7z archive".colorize(:green)
-        Extract::p7zip(file)
-      else
-        puts "not packed with 7z".colorize(:red)
-      end
-
+      # Try to find an UEFI bios image now
       if Utils::installed?("UEFIDump", "required for UEFI images") && Test::uefi(file)
         puts "found UEFI image".colorize(:green)
         Extract::uefi(file)
