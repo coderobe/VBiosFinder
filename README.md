@@ -21,6 +21,10 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
 
+## Troubleshooting
+**Q:** There are no files in `./output` after running the tool!  
+**A:** It's very possible that VBiosFinder can't extract your type of BIOS update right now. Feel free to open an issue with a link to your bios update and the program output you get!
+
 ## Licensing
 This project, initially authored by Robin Broda, is licensed under the GNU Affero General Public License v3  
 A copy of the license is available in `LICENSE.txt`
