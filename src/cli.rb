@@ -11,7 +11,8 @@ module VBiosFinder
   @@wd
   class CLI < Thor
     desc 'extract <bios update file>'.colorize(:blue), 'attempts to extract an embedded vbios from a bios update'
-    def extract file=nil, wd="#{Dir.pwd}/tmp-vbiosfinder"
+    def extract file=nil
+      wd = "#{Dir.pwd}/tmp-vbiosfinder"
       if file.nil?
         puts "no file specified".colorize(:red)
         return
