@@ -21,9 +21,18 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
 
+## Compatibility
+- Lenovo y50-70 **(bios update)**
+- **note: if your device isn't listed here, feel free to try this tool and report your results!**
+
 ## Troubleshooting
 **Q:** There are no files in `./output` after running the tool!  
 **A:** It's very possible that VBiosFinder can't extract your type of BIOS update right now. Feel free to open an issue with a link to your bios update and the program output you get!
+
+## TODO
+- Add option to extract the bios of the running system **(can we?)**
+- Clean up temporary working dir after finishing up **(should we?) (default-on CLI switch?)**
+- Test with more BIOS updates
 
 ## Licensing
 This project, initially authored by Robin Broda, is licensed under the GNU Affero General Public License v3  
