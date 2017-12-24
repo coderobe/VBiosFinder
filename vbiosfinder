@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+export PATH="$PATH:$( cd "$(dirname "$0")" ; pwd -P )/3rdparty"
+exec /usr/bin/env bundle exec ruby _init.rb "$0" $@
