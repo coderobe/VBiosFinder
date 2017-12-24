@@ -51,7 +51,7 @@ module VBiosFinder
               begin
                 romdata = rom_parser.run(file: mod)
                 romdata = romdata.split("\n")[1].split(", ").map{|e| e.split(": ")}.to_h rescue nil
-                unless romdata.nil? && romdata['vendor'].nil? && romdata['device'].nil?
+                unless romdata.nil? || romdata['vendor'].nil? || romdata['device'].nil?
                   puts "Found VBIOS for device #{romdata['vendor']}:#{romdata['device']}!".colorize(:green)
                   new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}.rom"
                   FileUtils.cp(mod, "#{outpath}/#{new_filename}")
