@@ -1,0 +1,5 @@
+.bundle
+output
+tmp-vbiosfinder
+vendor
+3rdparty/*
