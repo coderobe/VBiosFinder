@@ -22,7 +22,10 @@ module VBiosFinder
       # Try to find an UEFI bios image now
       if Utils::installed?("UEFIDump", "required for UEFI images") && Test::uefi(file)
         puts "found UEFI image".colorize(:green)
-        Extract::uefi(file)
+        outpath = "#{Dir.pwd}/../output"
+        FileUtils.mkdir_p outpath
+        FileUtils.cp file, "#{outpath}/bios_#{File.basename file}"
+        Extract::uefi file
         puts "extracted. filtering modules...".colorize(:blue)
         modules = Find.find("#{file}.dump").reject{|e| File.directory? e}.select{|e| e.end_with? ".bin"}
         puts "got #{modules.length} modules".colorize(:blue)
@@ -31,8 +34,6 @@ module VBiosFinder
         modules = modules.select{|e| line.run(file: e).include? "Video"}
         if modules.length > 0
           puts "#{modules.length} possible candidates".colorize(:green)
-          outpath = "#{Dir.pwd}/../output"
-          FileUtils.mkdir_p outpath
           if Utils::installed?("rom-parser", "required for proper rom naming & higher accuracy")
             modules.each do |mod|
               rom_parser = Cocaine::CommandLine.new("rom-parser", ":file")
