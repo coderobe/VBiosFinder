@@ -4,11 +4,11 @@ module VBiosFinder
   class Extract
     def self.uefi file
       begin
-        line = Cocaine::CommandLine.new("UEFIDump", ":file")
-        puts line.run(file: file)
+        line = Cocaine::CommandLine.new("UEFIExtract", ":file all")
+        line.run(file: file)
       rescue Cocaine::ExitStatusError => e
         # TODO: fix Test::uefi before uncommenting this
-        # puts e.message
+        puts e.message
         return
       end
     end
@@ -16,8 +16,8 @@ module VBiosFinder
   class Test
     def self.uefi file
       begin
-        line = Cocaine::CommandLine.new("UEFIDump", ":file")
-        puts line.run(file: file)
+        line = Cocaine::CommandLine.new("UEFIExtract", ":file report")
+        line.run(file: file)
         true
       rescue Cocaine::ExitStatusError => e
         false

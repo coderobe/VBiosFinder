@@ -17,6 +17,10 @@ module VBiosFinder
         puts "no file specified".colorize(:red)
         return
       end
+      if File.directory? wd
+        puts "dirty work directory! remove #{wd}".colorize(:red)
+        exit 1
+      end
       FileUtils.mkdir_p wd
       Kernel.at_exit do
         puts "Cleaning up garbage".colorize(:blue)

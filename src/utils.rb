@@ -13,7 +13,7 @@ module VBiosFinder
     end
     def self.installed? program, reason="optional"
       if find_executable(program).nil?
-        puts "Install '#{program}' on your system (#{reason})"
+        puts "Install '#{program}' on your system (#{reason})".colorize(:red)
         false
       else
         true

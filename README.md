@@ -6,7 +6,7 @@ Laptops with NVIDIA Optimus graphics often have the dGPU VBIOS integrated in the
 ## Dependencies
 - Ruby
 - bundler **(a ruby gem)**
-- [UEFIDump](https://github.com/LongSoft/UEFITool) **(note: UEFIDump can be found in the branch `new_engine`)**
+- [UEFIExtract](https://github.com/LongSoft/UEFITool) **(note: UEFIExtract can be found in the branch `new_engine`)**
 - [rom-parser](https://github.com/awilliam/rom-parser)
 - p7zip **(optional)**
 - [innoextract](https://github.com/dscharrer/innoextract) **(optional)**
