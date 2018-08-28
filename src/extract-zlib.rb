@@ -3,10 +3,16 @@ require "zlib"
 module VBiosFinder
   class Extract
     def self.zlib file
-      File.open file, "r:ASCII-8BIT" do |data|
-        File.open "#{file}-zlib", "w:ASCII-8BIT" do |outdata|
-          outdata.write Zlib::Inflate.inflate(data.read)
+      target = "#{file}-zlib"
+      begin
+        File.open file, "r:ASCII-8BIT" do |data|
+          File.open target, "w:ASCII-8BIT" do |outdata|
+            outdata.write Zlib::Inflate.inflate(data.read)
+          end
         end
+      rescue Zlib::DataError
+        puts "wrong guess :(".colorize(:red)
+        FileUtils.rm target
       end
     end
   end
