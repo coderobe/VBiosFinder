@@ -68,7 +68,8 @@ module VBiosFinder
                 FileUtils.cp(mod, "#{outpath}/#{new_filename}")
               end
             rescue Cocaine::ExitStatusError => e
-              puts "can't determine vbios type"
+              puts "can't determine vbios type of #{File.basename(mod)}, saving as 'vbios_unknown_#{File.basename(mod)}'"
+              FileUtils.cp(mod, "#{outpath}/vbios_unknown_#{File.basename(mod)}")
             end
           end
         else
