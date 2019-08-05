@@ -25,6 +25,7 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - Lenovo y50-70 **(bios update)**
 - [Lenovo S5 2nd Gen (20JAA009HH) **(bios update)**](https://github.com/coderobe/VBiosFinder/issues/1)
 - [TravelMate P645-SG](https://github.com/coderobe/VBiosFinder/issues/9)
+- [ThinkPad T430](https://github.com/coderobe/VBiosFinder/issues/18)
 - **note: if your device isn't listed here, feel free to try this tool and report your results!**
 
 ## Troubleshooting
