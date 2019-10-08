@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem "cocaine"
+gem "terrapin"
 
 
 # Added at 2017-12-24 10:16:46 +0100 by coderobe:

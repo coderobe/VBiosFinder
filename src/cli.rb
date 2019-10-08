@@ -5,7 +5,7 @@ require "colorize"
 require "./src/methods"
 require "./src/utils"
 
-#Cocaine::CommandLine.logger = Logger.new(STDOUT)
+#Terrapin::CommandLine.logger = Logger.new(STDOUT)
 
 module VBiosFinder
   @@wd

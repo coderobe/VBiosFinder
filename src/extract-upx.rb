@@ -1,12 +1,12 @@
-require "cocaine"
+require "terrapin"
 
 module VBiosFinder
   class Extract
     def self.upx file
       begin
-        line = Cocaine::CommandLine.new("upx", "-d :file -o :outfile")
+        line = Terrapin::CommandLine.new("upx", "-d :file -o :outfile")
         line.run(file: file, outfile: "upx-#{file}")
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         puts e.message
         return
       end
@@ -15,10 +15,10 @@ module VBiosFinder
   class Test
     def self.upx file
       begin
-        line = Cocaine::CommandLine.new("upx", "-t :file")
+        line = Terrapin::CommandLine.new("upx", "-t :file")
         line.run(file: file)
         true
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         false
       end
     end

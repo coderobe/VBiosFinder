@@ -1,12 +1,12 @@
-require "cocaine"
+require "terrapin"
 
 module VBiosFinder
   class Extract
     def self.innosetup file
       begin
-        line = Cocaine::CommandLine.new("innoextract", ":file")
+        line = Terrapin::CommandLine.new("innoextract", ":file")
         puts line.run(file: file)
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         puts e.message
         return
       end
@@ -15,10 +15,10 @@ module VBiosFinder
   class Test
     def self.innosetup file
       begin
-        line = Cocaine::CommandLine.new("innoextract", "-t :file")
+        line = Terrapin::CommandLine.new("innoextract", "-t :file")
         line.run(file: file)
         true
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         false
       end
     end
