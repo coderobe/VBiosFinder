@@ -1,12 +1,12 @@
-require "cocaine"
+require "terrapin"
 
 module VBiosFinder
   class Extract
     def self.p7zip file
       begin
-        line = Cocaine::CommandLine.new("7z", "x :file")
+        line = Terrapin::CommandLine.new("7z", "x :file")
         line.run(file: file)
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         puts e.message
         return
       end
@@ -15,10 +15,10 @@ module VBiosFinder
   class Test
     def self.p7zip file
       begin
-        line = Cocaine::CommandLine.new("7z", "l :file | grep 'Type = 7z'")
+        line = Terrapin::CommandLine.new("7z", "l :file | grep 'Type = 7z'")
         line.run(file: file)
         true
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         false
       end
     end

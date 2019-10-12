@@ -1,4 +1,4 @@
-require "cocaine"
+require "terrapin"
 require "mkmf"
 require "find"
 

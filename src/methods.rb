@@ -1,4 +1,4 @@
-require "cocaine"
+require "terrapin"
 require "find"
 require "colorize"
 require "./src/extraction"
@@ -52,13 +52,13 @@ module VBiosFinder
       uefibins = Find.find(".").reject{|e| File.directory? e}.select{|e| e.end_with? ".bin"}
       puts "got #{uefibins.length} modules".colorize(:blue)
       puts "finding vbios".colorize(:blue)
-      line = Cocaine::CommandLine.new("file", "-b :file")
+      line = Terrapin::CommandLine.new("file", "-b :file")
       modules = uefibins.select{|e| line.run(file: e).include? "Video"}
       if modules.length > 0
         puts "#{modules.length} possible candidates".colorize(:green)
         if Utils::installed?("rom-parser", "required for proper rom naming & higher accuracy")
           modules.each do |mod|
-            rom_parser = Cocaine::CommandLine.new("rom-parser", ":file")
+            rom_parser = Terrapin::CommandLine.new("rom-parser", ":file")
             begin
               romdata = rom_parser.run(file: mod)
               romdata = romdata.split("\n")[1].split(", ").map{|e| e.split(": ")}.to_h rescue nil
@@ -67,7 +67,7 @@ module VBiosFinder
                 new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}.rom"
                 FileUtils.cp(mod, "#{outpath}/#{new_filename}")
               end
-            rescue Cocaine::ExitStatusError => e
+            rescue Terrapin::ExitStatusError => e
               puts "can't determine vbios type of #{File.basename(mod)}, saving as 'vbios_unknown_#{File.basename(mod)}'"
               FileUtils.cp(mod, "#{outpath}/vbios_unknown_#{File.basename(mod)}")
             end

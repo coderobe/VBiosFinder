@@ -1,12 +1,12 @@
-require "cocaine"
+require "terrapin"
 
 module VBiosFinder
   class Extract
     def self.uefi file
       begin
-        line = Cocaine::CommandLine.new("UEFIExtract", ":file all")
+        line = Terrapin::CommandLine.new("UEFIExtract", ":file all")
         line.run(file: file)
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         # TODO: fix Test::uefi before uncommenting this
         puts e.message
         return
@@ -16,10 +16,10 @@ module VBiosFinder
   class Test
     def self.uefi file
       begin
-        line = Cocaine::CommandLine.new("UEFIExtract", ":file report")
+        line = Terrapin::CommandLine.new("UEFIExtract", ":file report")
         line.run(file: file)
         true
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         false
       end
     end
