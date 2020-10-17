@@ -8,7 +8,8 @@ require "./src/extract-uefi"
 require "./src/extract-7z"
 require "./src/extract-polyglot"
 require "./src/extract-zlib"
-
+require 'digest/md5'
+hash = {}
 module VBiosFinder
   class Main
     @extractions = []
@@ -65,6 +66,7 @@ module VBiosFinder
               unless romdata.nil? || romdata['vendor'].nil? || romdata['device'].nil?
                 puts "Found VBIOS for device #{romdata['vendor']}:#{romdata['device']}!".colorize(:green)
                 new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}.rom"
+                new_filename =check_cpy(new_filename,romdata)                
                 FileUtils.cp(mod, "#{outpath}/#{new_filename}")
               end
             rescue Terrapin::ExitStatusError => e
@@ -86,5 +88,23 @@ module VBiosFinder
         end
       end
     end
+  end
+end
+
+
+
+def check_cpy(new_filename,romdata)
+  count = 0
+  Dir.glob('**/*',File::FNM_DOTMATCH).each do |f|
+    key = Digest::MD5.hexdigest(IO.read(f)).to_sym
+    if hash.has_key?(key) then hash[key].push(f) else hash[key] = [f] end
+  end
+
+  hash.each_value do |a|
+    next if a.length == 1
+    count+= 1
+    new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}_#{count}.rom"
+
+    return new_filename
   end
 end
