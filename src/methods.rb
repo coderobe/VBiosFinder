@@ -9,7 +9,7 @@ require "./src/extract-7z"
 require "./src/extract-polyglot"
 require "./src/extract-zlib"
 require 'digest/md5'
-hash = {}
+hashm = Hash.new
 module VBiosFinder
   class Main
     @extractions = []
@@ -93,14 +93,17 @@ end
 
 
 
-def check_cpy(new_filename,romdata)
+define_method (:check_cpy) do |new_filename,romdata|
   count = 0
   Dir.glob('**/*',File::FNM_DOTMATCH).each do |f|
+    if File.directory?(f)
+      next
+    end
     key = Digest::MD5.hexdigest(IO.read(f)).to_sym
-    if hash.has_key?(key) then hash[key].push(f) else hash[key] = [f] end
+    if hashm.has_key?(key) then hashm[key].push(f) else hashm[key] = [f] end
   end
 
-  hash.each_value do |a|
+  hashm.each_value do |a|
     next if a.length == 1
     count+= 1
     new_filename = "vbios_#{romdata['vendor']}_#{romdata['device']}_#{count}.rom"
