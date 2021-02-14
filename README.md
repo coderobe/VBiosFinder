@@ -22,10 +22,16 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - Extracted VBIOS roms will be placed in `./output`
 
 ## Compatibility (non-exhaustive)
-- Lenovo y50-70 **(bios update)**
-- [Lenovo S5 2nd Gen (20JAA009HH) **(bios update)**](https://github.com/coderobe/VBiosFinder/issues/1)
-- [TravelMate P645-SG](https://github.com/coderobe/VBiosFinder/issues/9)
+- [ASUS N580GD](https://github.com/coderobe/VBiosFinder/issues/15)
+- Lenovo y50-70
+- [Lenovo S5 2nd Gen (20JAA009HH)](https://github.com/coderobe/VBiosFinder/issues/1)
+- [ThinkPad P52](https://github.com/coderobe/VBiosFinder/issues/24)
+- [ThinkPad P72](https://github.com/coderobe/VBiosFinder/issues/13)
 - [ThinkPad T430](https://github.com/coderobe/VBiosFinder/issues/18)
+- [ThinkPad T440p](https://github.com/coderobe/VBiosFinder/issues/21)
+- [ThinkPad T530](https://github.com/coderobe/VBiosFinder/issues/34)
+- [TravelMate P645-SG](https://github.com/coderobe/VBiosFinder/issues/9)
+
 - **note: if your device isn't listed here, feel free to try this tool and report your results!**
 
 ## Troubleshooting
