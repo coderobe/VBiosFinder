@@ -22,6 +22,7 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - Extracted VBIOS roms will be placed in `./output`
 
 ## Compatibility (non-exhaustive)
+- Acer Aspire E1-571G (and models with the same BIOS)
 - [ASUS N580GD](https://github.com/coderobe/VBiosFinder/issues/15)
 - Lenovo y50-70
 - [Lenovo S5 2nd Gen (20JAA009HH)](https://github.com/coderobe/VBiosFinder/issues/1)
