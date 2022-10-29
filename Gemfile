@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem "terrapin"
+gem 'rubocop', group: 'development'
+gem 'terrapin'
 
+gem 'thor', '~> 1.2.1'
 
-# Added at 2017-12-24 10:16:46 +0100 by coderobe:
-gem "thor", "~> 0.20.0"
+gem 'pry', '~> 0.14.1'
 
-# Added at 2017-12-24 12:04:47 +0100 by coderobe:
-gem "pry", "~> 0.11.3"
+gem 'posix-spawn', '~> 0.3.13'
 
-# Added at 2017-12-24 12:27:01 +0100 by coderobe:
-gem "posix-spawn", "~> 0.3.13"
-
-# Added at 2017-12-24 12:50:49 +0100 by coderobe:
-gem "colorize", "~> 0.8.1"
+gem 'colorize', '~> 0.8.1'
