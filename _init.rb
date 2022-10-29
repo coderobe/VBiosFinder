@@ -1,4 +1,4 @@
-require "./src/cli"
+require './src/cli'
 
 $0=ARGV.first
 $PROGRAM_NAME=$0

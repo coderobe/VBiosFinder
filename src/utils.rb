@@ -1,17 +1,18 @@
-require "terrapin"
-require "mkmf"
-require "find"
+require 'terrapin'
+require 'mkmf'
+require 'find'
 
 module VBiosFinder
   class Utils
     @@current_files = []
     def self.get_new_files
-      current_files = Find.find(".").reject{|e| File.directory? e}
+      current_files = Find.find('.').reject { |e| File.directory? e }
       result = current_files - @@current_files
       @@current_files = current_files
-      return result
+      result
     end
-    def self.installed? program, reason="optional"
+
+    def self.installed?(program, reason = 'optional')
       if find_executable(program).nil?
         puts "Install '#{program}' on your system (#{reason})".colorize(:red)
         false
