@@ -17,10 +17,18 @@ module VBiosFinder
       begin
         line = Terrapin::CommandLine.new("7z", "l :file | grep 'Type = 7z'")
         line.run(file: file)
-        true
+        result_7Z = true
       rescue Terrapin::ExitStatusError => e
-        false
+        result_7Z = false
       end
+      begin
+        line = Terrapin::CommandLine.new("7z", "l :file | grep 'Type = Cab'")
+        line.run(file: file)
+        result_Cab = true
+      rescue Terrapin::ExitStatusError => e
+        result_Cab = false
+      end
+      return result_Cab || result_7z
     end
   end
 end
