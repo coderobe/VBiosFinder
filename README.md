@@ -20,6 +20,7 @@ Some dependencies might not offer a package for your linux distribution **(like 
 ## Usage
 - Run `bundle install --path=vendor/bundle` to install the required ruby modules **(once)**
 - Run `./vbiosfinder extract /path/to/bios_update.exe` to attempt an extraction
+    - NOTE: /path/to/bios_update.exe **MUST** be a fully qualified path. Do **not** use relative path names
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
 
