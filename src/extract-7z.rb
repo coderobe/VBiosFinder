@@ -28,7 +28,7 @@ module VBiosFinder
       rescue Terrapin::ExitStatusError => e
         result_Cab = false
       end
-      return result_Cab || result_7z
+      return result_Cab || result_7Z
     end
   end
 end
