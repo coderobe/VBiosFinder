@@ -3,6 +3,8 @@
 This tool attempts to extract a VBIOS from a bios update  
 Laptops with NVIDIA Optimus graphics often have the dGPU VBIOS integrated in their system BIOS, this makes extracting the VBIOS a complicated process. Provided you have a BIOS Update for your laptop, this tool might be able to automagically extract all available VBIOS from it.
 
+This version adds the ability to extract from HP Service Pack executable files. HP Service Packs contain embedded BIOS and VBIOS for HP laptops. Replacement graphics cards for HP laptops are usually shipped "bare" without any VBIOS installed.
+
 ## Dependencies
 - Ruby
 - bundler **(a ruby gem)**
@@ -18,6 +20,8 @@ Some dependencies might not offer a package for your linux distribution **(like 
 ## Usage
 - Run `bundle install --path=vendor/bundle` to install the required ruby modules **(once)**
 - Run `./vbiosfinder extract /path/to/bios_update.exe` to attempt an extraction
+    - NOTE: /path/to/bios_update.exe **MUST** be a fully qualified path. Do **not** use relative path names
+    - NOTE: /path/to/bios_update.exe can be an HP Service Pack exe file, e.g. /home/user/sp012345.exe
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
 
@@ -31,6 +35,7 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - [ThinkPad T440p](https://github.com/coderobe/VBiosFinder/issues/21)
 - [ThinkPad T530](https://github.com/coderobe/VBiosFinder/issues/34)
 - [TravelMate P645-SG](https://github.com/coderobe/VBiosFinder/issues/9)
+- HP Service Packs
 
 - **note: if your device isn't listed here, feel free to try this tool and report your results!**
 
