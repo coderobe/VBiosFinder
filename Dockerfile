@@ -15,7 +15,6 @@ RUN         apt update && \
 
 RUN         groupadd -g 1000 app \
             && useradd -d /app -s /bin/bash -g app app \
-            && mkdir -p /app/.ssh \
             && chown -R app:app /app
 
 RUN         git clone https://github.com/awilliam/rom-parser && \
