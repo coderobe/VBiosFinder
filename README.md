@@ -1,9 +1,10 @@
 # VBiosFinder (linux)
 
-This tool attempts to extract a VBIOS from a bios update  
+This tool attempts to extract a VBIOS from a bios update
 Laptops with NVIDIA Optimus graphics often have the dGPU VBIOS integrated in their system BIOS, this makes extracting the VBIOS a complicated process. Provided you have a BIOS Update for your laptop, this tool might be able to automagically extract all available VBIOS from it.
 
 ## Dependencies
+
 - Ruby
 - bundler **(a ruby gem)**
 - [UEFIExtract](https://github.com/LongSoft/UEFITool) **(note: UEFIExtract can be found in the branch `new_engine`)**
@@ -13,15 +14,30 @@ Laptops with NVIDIA Optimus graphics often have the dGPU VBIOS integrated in the
 - upx **(optional)**
 
 ## Note
+
 Some dependencies might not offer a package for your linux distribution **(like UEFIDump and rom-parser)**. The binaries can be placed in `./3rdparty` to avoid having to install them.
 
 ## Usage
+
 - Run `bundle install --path=vendor/bundle` to install the required ruby modules **(once)**
 - Run `./vbiosfinder extract /path/to/bios_update.exe` to attempt an extraction
 - A temporary working dir is created at `./tmp-vbiosfinder` which can be removed inbetween runs
 - Extracted VBIOS roms will be placed in `./output`
 
+### Running with Docker
+
+- Create a temporary folder using the command `mkdir -p /tmp/extract/output`.
+- Move your BIOS file into the `/tmp/extract/` directory.
+- Run the Docker container using the following command:
+
+```
+docker run -v /tmp/extract/:/app/bios/ -v /tmp/extract/output/:/app/output/ binboum/vbiosfinder:latest /app/bios/bios_update.exe
+```
+
+- You can find the extract in `/tmp/extract/output/`
+
 ## Compatibility (non-exhaustive)
+
 - [ASUS N580GD](https://github.com/coderobe/VBiosFinder/issues/15)
 - Lenovo y50-70
 - [Lenovo S5 2nd Gen (20JAA009HH)](https://github.com/coderobe/VBiosFinder/issues/1)
@@ -35,14 +51,17 @@ Some dependencies might not offer a package for your linux distribution **(like 
 - **note: if your device isn't listed here, feel free to try this tool and report your results!**
 
 ## Troubleshooting
-**Q:** There are no files in `./output` after running the tool!  
+
+**Q:** There are no files in `./output` after running the tool!
 **A:** It's very possible that VBiosFinder can't extract your type of BIOS update right now. Feel free to open an issue with a link to your bios update and the program output you get!
 
 ## TODO
+
 - Add option to extract the bios of the running system **(can we?)**
 - ~~Clean up temporary working dir after finishing up~~ done
 - Test with more BIOS updates
 
 ## Licensing
-This project, initially authored by Robin Broda, is licensed under the GNU Affero General Public License v3  
+
+This project, initially authored by Robin Broda, is licensed under the GNU Affero General Public License v3
 A copy of the license is available in `LICENSE.txt`
